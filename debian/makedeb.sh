@@ -27,7 +27,7 @@ fi
 . debian/appscale_install_functions.sh
 
 cp -v debian/changelog.${DIST} debian/changelog || exit 1
-REVNO=`bzr revno`
+REVNO=`git rev-parse HEAD`
 sed -i -e s/REVNO/$REVNO/g debian/changelog || exit 1
 
 if [ -e ./debian/control.${COMP}.${DIST} ]; then
