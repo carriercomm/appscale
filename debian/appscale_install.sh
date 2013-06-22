@@ -13,69 +13,69 @@ echo "APPSCALE_HOME in runtime=${APPSCALE_HOME_RUNTIME}"
 
 case "$1" in
     core)
-	# scratch install of appscale including post script.
-	installappscaleprofile
-	. /etc/profile.d/appscale.sh
-	installgems
-	postinstallgems
-	installhaproxy
-	postinstallhaproxy
-	installnginx
-	postinstallnginx
+    # scratch install of appscale including post script.
+    installappscaleprofile
+    . /etc/profile.d/appscale.sh
+    installgems
+    postinstallgems
+    installhaproxy
+    postinstallhaproxy
+    installnginx
+    postinstallnginx
         installpython25
         installpython26
-	pip install numpy 
-	pip install matplotlib PIL pycrypto lxml xmpppy 
-	installappserverjava
-	postinstallappserverjava
-	installmonitoring
-	postinstallmonitoring
-	installthrift_fromsource
-	postinstallthrift_fromsource
-        installtornado_fromsource
- 	pip install tornado
-	installprotobuf
-	postinstallprotobuf
-        pip install flexmock nose
-	installhadoop
-	postinstallhadoop
-	installzookeeper
-	postinstallzookeeper
-        installrabbitmq
-        postinstallrabbitmq
-	pip install celery
-	installservice
-	postinstallservice
-	setupntpcron
+    pip install numpy 
+    pip install matplotlib PIL pycrypto lxml xmpppy 
+    installappserverjava
+    postinstallappserverjava
+    installmonitoring
+    postinstallmonitoring
+    installthrift_fromsource
+    postinstallthrift_fromsource
+    installtornado_fromsource
+    pip install tornado
+    installprotobuf
+    postinstallprotobuf
+    pip install flexmock nose
+    installhadoop
+    postinstallhadoop
+    installzookeeper
+    postinstallzookeeper
+    installrabbitmq
+    postinstallrabbitmq
+    pip install celery
+    installservice
+    postinstallservice
+    setupntpcron
         updatealternatives
-	sethosts
+    sethosts
         setulimits
-	;;
+    ;;
     cassandra)
-	installcassandra
-	postinstallcassandra
-	;;
+    installcassandra
+    postinstallcassandra
+    ;;
     hbase)
-	installhbase
-	postinstallhbase
-	;;
+    installhbase
+    postinstallhbase
+    ;;
     hypertable)
-	installhypertable
-	postinstallhypertable
-	;;
+    installhypertable
+    postinstallhypertable
+    ;;
     # for test only. this should be included in core and all.
     zookeeper)
-	installzookeeper
-	postinstallzookeeper
-	;;
+    installzookeeper
+    postinstallzookeeper
+    ;;
     hadoop)
-	installhadoop
-	postinstallhadoop
-	;;
+    installhadoop
+    postinstallhadoop
+    ;;
     protobuf-src)
-	installprotobuf_fromsource
-	postinstallprotobuf
-	;;
+    installprotobuf_fromsource
+    postinstallprotobuf
+    ;;
     rabbit-mq)
         installrabbitmq
         postinstallrabbitmq
@@ -84,49 +84,49 @@ case "$1" in
         installcelery
         ;;
     all)
-	# scratch install of appscale including post script.
-	installappscaleprofile
-	. /etc/profile.d/appscale.sh
-	installgems
-	postinstallgems
-	installhaproxy
-	postinstallhaproxy
-	installnginx
-	postinstallnginx
-        installpython25
-        installpython26
-	pip install numpy 
-	pip install matplotlib PIL pycrypto lxml xmpppy 
-	installappserverjava
-	postinstallappserverjava
-	installmonitoring
-	postinstallmonitoring
-	installthrift_fromsource
-	postinstallthrift_fromsource
-        installtornado_fromsource
-        install flexmock
-        installnose
-        postinstalltornado
-	installprotobuf
-	postinstallprotobuf
-	installhadoop
-	postinstallhadoop
-	installzookeeper
-	postinstallzookeeper
+    # scratch install of appscale including post script.
+    installappscaleprofile
+    . /etc/profile.d/appscale.sh
+    installgems
+    postinstallgems
+    installhaproxy
+    postinstallhaproxy
+    installnginx
+    postinstallnginx
+    installpython25
+    installpython26
+    pip install numpy 
+    pip install matplotlib PIL pycrypto lxml xmpppy 
+    installappserverjava
+    postinstallappserverjava
+    installmonitoring
+    postinstallmonitoring
+    installthrift_fromsource
+    postinstallthrift_fromsource
+    installtornado_fromsource
+    pip install flexmock
+    pip install nose
+    postinstalltornado
+    installprotobuf
+    postinstallprotobuf
+    installhadoop
+    postinstallhadoop
+    installzookeeper
+    postinstallzookeeper
         installcassandra
-	postinstallcassandra
-	installhbase
-	postinstallhbase
-	installhypertable
-	postinstallhypertable
+    postinstallcassandra
+    installhbase
+    postinstallhbase
+    installhypertable
+    postinstallhypertable
         installrabbitmq
         postinstallrabbitmq
         installcelery
-	installservice
-	postinstallservice
-	updatealternatives
-	setupntpcron
+    installservice
+    postinstallservice
+    updatealternatives
+    setupntpcron
         sethosts
         setulimits
-	;;
+    ;;
 esac
