@@ -104,7 +104,7 @@ case "$1" in
 	installthrift_fromsource
 	postinstallthrift_fromsource
         installtornado_fromsource
-        installflexmock
+        install flexmock
         installnose
         postinstalltornado
 	installprotobuf
