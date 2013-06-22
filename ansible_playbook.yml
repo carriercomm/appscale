@@ -61,3 +61,5 @@
       action: git repo=https://github.com/sejo/appscale.git dest=/srv/appscale
     - name: build
       action: command bash debian/appscale_build.sh chdir=/srv/appscale 
+      async: 7200
+      poll: 30
