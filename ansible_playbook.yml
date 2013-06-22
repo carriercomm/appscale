@@ -1,0 +1,63 @@
+- hosts: appscale01.sejo-it.be
+  sudo: yes
+  user: ansible
+
+  tasks: 
+    - name: install deps so we can build
+      action: apt pkg=$item state=present update_cache=yes
+      with_items: 
+        - cmake
+        - autoconf
+        - automake
+        - libtool 
+        - gcc
+        - g++
+        - pkg-config
+        - ant
+        - maven2
+        - doxygen
+        - graphviz
+        - rsync
+        - tcl-dev
+        - ntp
+        - wget
+        - bzr
+        - screen
+        - build-essential
+        - bison
+        - flex
+        - byacc 
+        - unzip 
+        - bzip2
+        - libc6-dev 
+        - subversion
+        - erlang
+        - dpkg-dev
+        - dh-make 
+        - debhelper 
+        - fakeroot
+        - python-dev 
+        - libssl-dev
+        - libevent-dev
+        - ruby1.8-dev
+        - thin1.8
+        - unixodbc-dev
+        - zlib1g-dev
+        - liblog4cpp5-dev
+        - libexpat1-dev
+        - libncurses5-dev
+        - libbz2-dev 
+        - libreadline-dev 
+        - libgdbm-dev 
+        - swig
+        - libsqlite3-dev
+        - libcppunit-dev
+        - libcairo2-dev 
+        - libpango1.0-dev 
+        - libxml2-dev 
+        - libart-2.0-2
+        - libboost1.48-dev
+    - name: clone the repo
+      action: git repo=https://github.com/sejo/appscale.git dest=/srv/appscale
+    - name: build
+      action: command bash debian/appscale_build.sh chdir=/srv/appscale 
