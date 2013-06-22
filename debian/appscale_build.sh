@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 export DIST=`lsb_release -c -s`
 
@@ -42,15 +42,15 @@ export APPSCALE_HOME_RUNTIME=`pwd`
 
 apt-get update
 
-if [ "$DIST" = "lucid" ]; then
-    echo "Running lucid specific commands"
+if [ "$DIST" = "lucid" || "$DIST" = "precise"]; then
+    echo "Running $DIST specific commands"
     # install add-apt-repository command
     apt-get -y install python-software-properties
     # add repository
     #add-apt-repository ppa:fkrull/deadsnakes
-    add-apt-repository "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu lucid main"
-    add-apt-repository "deb-src http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu lucid main" 
-    add-apt-repository "deb http://archive.canonical.com/ lucid partner"
+    add-apt-repository "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu ${DIST,,} main"
+    add-apt-repository "deb-src http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu ${DIST,,} main" 
+    add-apt-repository "deb http://archive.canonical.com/ ${DIST,,} partner"
 
     # For rabbitmq
     add-apt-repository "deb http://www.rabbitmq.com/debian/ testing main"

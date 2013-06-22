@@ -3,11 +3,6 @@
 DIST=`lsb_release -c -s`
 cd `dirname $0`/..
 
-if [ ! -e ./debian/changelog.${DIST} ]; then
-  echo "${DIST} is not supported."
-  exit 1
-fi
-
 COMP=$1
 RELEASE=$2
 if [ -z "$RELEASE" ]; then
@@ -26,9 +21,7 @@ fi
 # include APPSCALE_HOME_RUNTIME
 . debian/appscale_install_functions.sh
 
-cp -v debian/changelog.${DIST} debian/changelog || exit 1
 REVNO=`git rev-parse HEAD`
-sed -i -e s/REVNO/$REVNO/g debian/changelog || exit 1
 
 if [ -e ./debian/control.${COMP}.${DIST} ]; then
     cp -v debian/control.${COMP}.${DIST} debian/control || exit 1

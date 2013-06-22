@@ -1,4 +1,4 @@
-#/bin/sh
+#/bin/sh +x
 # Common functions for build and installer
 #
 # This should work in bourne shell (/bin/sh)
@@ -63,64 +63,40 @@ setupntpcron()
     rm crontab.tmp
 }
 
+
+installpython25()
+{
+    mkdir -pv ${APPSCALE_HOME}/downloads
+    cd ${APPSCALE_HOME}/downloads
+    wget http://www.python.org/ftp/python/2.5.6/Python-2.5.6.tar.bz2
+    tar xvjpf Python-2.5.6.tar.bz2
+    pushd Python-2.5.6
+    ./configure
+    patch -p0 < ../../debian/patches/fix_sqlite3_setup_error.patch
+    make 
+    make install
+    rm /usr/local/bin/python
+}
+
+installpython26()
+{
+    mkdir -pv ${APPSCALE_HOME}/downloads
+    cd ${APPSCALE_HOME}/downloads
+    wget http://www.python.org/ftp/python/2.6.8/Python-2.6.8.tar.bz2
+    tar xvjpf Python-2.6.8.tar.bz2
+    pushd Python-2.6.8
+    ./configure
+    make 
+    make install
+    rm /usr/local/bin/python
+}
+
 installpython27()
 {
     cd /usr/local
     wget $APPSCALE_PACKAGE_MIRROR/Python-2.7.3.tgz
     tar zxvf Python-2.7.3.tgz
     rm /usr/local/Python-2.7.3.tgz
-}
-
-installnumpy()
-{
-    mkdir -pv ${APPSCALE_HOME}/downloads
-    cd ${APPSCALE_HOME}/downloads
-    wget $APPSCALE_PACKAGE_MIRROR/appscale-numpy-1.7.0.tar.gz
-    tar zxvf appscale-numpy-1.7.0.tar.gz
-    cd numpy-1.7.0
-    /usr/local/Python-2.7.3/python setup.py install
-    cd ..
-    rm appscale-numpy-1.7.0.tar.gz
-    rm -fdr numpy-1.7.0
-}
-
-installmatplotlib()
-{
-    mkdir -pv ${APPSCALE_HOME}/downloads
-    cd ${APPSCALE_HOME}/downloads
-    wget $APPSCALE_PACKAGE_MIRROR/matplotlib-1.2.0.tar.gz
-    tar zxvf matplotlib-1.2.0.tar.gz
-    cd matplotlib-1.2.0
-    /usr/local/Python-2.7.3/python setup.py install
-    cd ..
-    rm -fdr matplotlib-1.2.0*
-}
-
-installPIL()
-{
-    mkdir -pv ${APPSCALE_HOME}/downloads
-    cd ${APPSCALE_HOME}/downloads
-    wget $APPSCALE_PACKAGE_MIRROR/Imaging-1.1.7.tar.gz
-    tar zxvf Imaging-1.1.7.tar.gz
-    cd Imaging-1.1.7
-    /usr/local/Python-2.7.3/python setup.py install
-    cd ..
-    rm -fdr Imaging-1.1.7*
-}
-
-installpycrypto()
-{
-    easy_install pycrypto
-}
-
-installlxml()
-{
-    easy_install lxml
-}
-
-installxmpppy()
-{
-    easy_install xmpppy
 }
 
 setulimits()
@@ -324,22 +300,6 @@ installtornado()
 	mkdir -pv ${DESTDIR}${DISTP}
 	cp -rv ${DISTP}/tornado-*.egg ${DESTDIR}${DISTP}
     fi
-}
-
-installnose()
-{
-  easy_install nose
-}
-
-installflexmock()
-{
-    easy_install flexmock
-}
-
-postinstalltornado()
-{
-    # just enable tornado
-    easy_install tornado
 }
 
 installhaproxy()
@@ -655,7 +615,7 @@ installhbase()
     tar zxvf hbase-${HBASE_VER}.tar.gz
     rm -v hbase-${HBASE_VER}.tar.gz
     # Clean out the maven repository
-    rm -rfd ~/.m2/
+    rm -rf ~/.m2/
     cd
     wget $APPSCALE_PACKAGE_MIRROR/maven_repos.tar.gz
     tar zxvf maven_repos.tar.gz
@@ -714,8 +674,8 @@ installcassandra()
     cd pycassa-${PYCASSA_VER}
     python setup.py install
     cd ..
-    rm -fdr pycassa-${PYCASSA_VER}
-    rm -fdr pycassa-${PYCASSA_VER}.tar.gz 
+    rm -fr pycassa-${PYCASSA_VER}
+    rm -fr pycassa-${PYCASSA_VER}.tar.gz 
 }
 
 postinstallcassandra()
@@ -868,7 +828,7 @@ installzookeeper()
     #patch -p0 -i ${APPSCALE_HOME}/AppDB/zkappscale/patch/zkpython-memory.patch
 
     # python library
-    easy_install kazoo
+    pip install kazoo
 
     # install java library
     mkdir -pv ${DESTDIR}/usr/share/java
@@ -886,7 +846,7 @@ installzookeeper()
 
     cd ${APPSCALE_HOME}/downloads
     rm -rv zookeeper-${ZK_VER}
-    rm -fdr zookeeper-${ZK_VER}.tar.gz
+    rm -fr zookeeper-${ZK_VER}.tar.gz
 
     mkdir -pv ${DESTDIR}/var/run/zookeeper
     mkdir -pv ${DESTDIR}/var/lib/zookeeper
@@ -971,7 +931,7 @@ installsetuptools()
     pushd setuptools-0.6c11
     python setup.py install
     popd
-    rm -fdr  setuptools-0.6c11*
+    rm -fr  setuptools-0.6c11*
 }
 
 postinstallsetuptools()
@@ -988,10 +948,6 @@ keygen()
 #    ssh-copy-id -i /root/.ssh/id_rsa.pub root@localhost
 }
 
-installcelery()
-{
-  easy_install -U Celery
-}
 
 installrabbitmq()
 {

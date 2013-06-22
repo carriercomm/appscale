@@ -18,18 +18,13 @@ case "$1" in
 	. /etc/profile.d/appscale.sh
 	installgems
 	postinstallgems
-        installsetuptools
 	installhaproxy
 	postinstallhaproxy
 	installnginx
 	postinstallnginx
-        installpython27
-        installnumpy
-        installmatplotlib
-        installPIL
-        installpycrypto
-        installlxml
-        installxmpppy
+        installpython25
+        installpython26
+	pip install numpy matplotlib PIL pycrypto lxml xmpppy 
 	installappserverjava
 	postinstallappserverjava
 	installmonitoring
@@ -37,18 +32,17 @@ case "$1" in
 	installthrift_fromsource
 	postinstallthrift_fromsource
         installtornado_fromsource
-        postinstalltornado
+ 	pip install tornado
 	installprotobuf
 	postinstallprotobuf
-        installflexmock
-        installnose
+        pip install flexmock nose
 	installhadoop
 	postinstallhadoop
 	installzookeeper
 	postinstallzookeeper
         installrabbitmq
         postinstallrabbitmq
-        installcelery
+	pip install celery
 	installservice
 	postinstallservice
 	setupntpcron
@@ -94,18 +88,13 @@ case "$1" in
 	. /etc/profile.d/appscale.sh
 	installgems
 	postinstallgems
-        installsetuptools
 	installhaproxy
 	postinstallhaproxy
 	installnginx
 	postinstallnginx
-        installpython27
-        installnumpy
-        installmatplotlib
-        installPIL
-        installpycrypto
-        installlxml
-        installxmpppy
+        installpython25
+        installpython26
+	pip install numpy matplotlib PIL pycrypto lxml xmpppy 
 	installappserverjava
 	postinstallappserverjava
 	installmonitoring
