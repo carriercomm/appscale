@@ -24,7 +24,8 @@ case "$1" in
 	postinstallnginx
         installpython25
         installpython26
-	pip install numpy matplotlib PIL pycrypto lxml xmpppy 
+	pip install numpy 
+	pip install matplotlib PIL pycrypto lxml xmpppy 
 	installappserverjava
 	postinstallappserverjava
 	installmonitoring
@@ -94,7 +95,8 @@ case "$1" in
 	postinstallnginx
         installpython25
         installpython26
-	pip install numpy matplotlib PIL pycrypto lxml xmpppy 
+	pip install numpy 
+	pip install matplotlib PIL pycrypto lxml xmpppy 
 	installappserverjava
 	postinstallappserverjava
 	installmonitoring
