@@ -106,7 +106,7 @@ case "$1" in
     installtornado_fromsource
     pip install flexmock
     pip install nose
-    postinstalltornado
+    pip install tornado
     installprotobuf
     postinstallprotobuf
     installhadoop
