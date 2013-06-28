@@ -121,7 +121,7 @@ case "$1" in
     postinstallhypertable
         installrabbitmq
         postinstallrabbitmq
-        installcelery
+    pip install celery
     installservice
     postinstallservice
     updatealternatives
