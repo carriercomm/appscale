@@ -58,8 +58,8 @@
         - libart-2.0-2
         - libboost1.48-dev
     - name: clone the repo
-      action: git repo=https://github.com/sejo/appscale.git dest=/srv/appscale
+      action: git repo=https://github.com/sejo/appscale.git dest=/root/appscale
     - name: build
-      action: command bash debian/appscale_build.sh chdir=/srv/appscale 
+      action: command bash debian/appscale_build.sh chdir=/root/appscale 
       async: 7200
       poll: 30
