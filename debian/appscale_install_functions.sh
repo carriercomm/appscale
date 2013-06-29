@@ -85,7 +85,7 @@ installpython26()
     wget http://www.python.org/ftp/python/2.6.8/Python-2.6.8.tar.bz2
     tar xvjpf Python-2.6.8.tar.bz2
     pushd Python-2.6.8
-    ./configure
+    ./configure --prefix=/usr
     make 
     make install
     rm /usr/local/bin/python
